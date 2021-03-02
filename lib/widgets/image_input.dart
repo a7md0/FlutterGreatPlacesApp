@@ -63,9 +63,13 @@ class _ImageInputState extends State<ImageInput> {
       source: ImageSource.camera,
       maxWidth: 600,
     );
+    if (pickedFile == null) {
+      return;
+    }
+
     final imageFile = File(pickedFile.path);
 
-    setState(() => _storedImage = File(pickedFile.path));
+    setState(() => _storedImage = imageFile);
 
     final Directory appDir = await syspath.getApplicationDocumentsDirectory();
     final String fileName = path.basename(pickedFile.path);
