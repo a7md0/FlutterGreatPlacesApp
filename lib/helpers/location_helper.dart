@@ -1,10 +1,10 @@
-const MAP_QUEST_KEY = 'Qx1hnVHVJbB8in3dEVpIG5mIA0CEwt76';
+const GOOGLE_MAP_API_KEY = 'AIzaSyCTqQnXecAiNXwpfGvk2i-g5BSwozjPI_c';
 
 class LocationHelper {
   static String generateLocationPreviewImage({
     double latitude,
     double longitude,
   }) {
-    return 'https://open.mapquestapi.com/staticmap/v4/getmap?key=$MAP_QUEST_KEY&size=600,400&zoom=13&center=$latitude,$longitude';
+    return 'https://maps.googleapis.com/maps/api/staticmap?center=$latitude,$longitude&zoom=13&size=600x300&maptype=roadmap&markers=color:red%7Clabel:C%7C$latitude,$longitude&key=$GOOGLE_MAP_API_KEY';
   }
 }
