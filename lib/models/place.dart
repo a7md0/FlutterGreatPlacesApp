@@ -15,6 +15,12 @@ class Place {
     @required this.image,
   });
 
+  Place.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        title = json['title'],
+        location = null,
+        image = File(json['image']);
+
   Place copyWith({
     String id,
     String title,
@@ -32,7 +38,7 @@ class Place {
         'id': id,
         'title': title,
         'location': location.toJson(),
-        'image': '-',
+        'image': image.path,
       };
 }
 
