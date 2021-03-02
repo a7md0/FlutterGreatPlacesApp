@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:great_places_app/helpers/location_helper.dart';
+import 'package:location/location.dart';
 
 class LocationInput extends StatefulWidget {
   @override
@@ -39,7 +41,7 @@ class _LocationInputState extends State<LocationInput> {
               icon: Icon(Icons.location_on),
               label: Text('Current Location'),
               textColor: Theme.of(context).primaryColor,
-              onPressed: () {},
+              onPressed: _setCurrentLocation,
             ),
             FlatButton.icon(
               icon: Icon(Icons.map),
@@ -51,5 +53,16 @@ class _LocationInputState extends State<LocationInput> {
         )
       ],
     );
+  }
+
+  Future<void> _setCurrentLocation() async {
+    final locData = await Location().getLocation();
+
+    setState(() {
+      _previewImageUrl = LocationHelper.generateLocationPreviewImage(
+        latitude: locData.latitude,
+        longitude: locData.longitude,
+      );
+    });
   }
 }
