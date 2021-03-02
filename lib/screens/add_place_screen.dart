@@ -26,7 +26,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('User Inputs...'),
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
@@ -50,7 +49,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             elevation: 0,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             color: Theme.of(context).accentColor,
-            onPressed: () {},
+            onPressed: _savePlace,
           ),
         ],
       ),
