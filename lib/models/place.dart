@@ -54,9 +54,9 @@ class PlaceLocation {
   });
 
   PlaceLocation copyWith({
-    @required double latitude,
-    @required double longitude,
-    @required String address,
+    double latitude,
+    double longitude,
+    String address,
   }) =>
       PlaceLocation(
         latitude: latitude ?? this.latitude,
