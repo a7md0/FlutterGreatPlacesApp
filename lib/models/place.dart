@@ -34,12 +34,23 @@ class Place {
         image: image ?? this.image,
       );
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'location': location != null ? location.toJson() : null,
-        'image': image.path,
-      };
+  Map<String, dynamic> toJson({bool inline = false}) {
+    Map<String, dynamic> json = {
+      'id': id,
+      'title': title,
+      'image': image.path,
+    };
+
+    if (location != null) {
+      if (inline) {
+        json.addAll(location.toJson());
+      } else {
+        json['location'] = location.toJson();
+      }
+    }
+
+    return json;
+  }
 }
 
 class PlaceLocation {
