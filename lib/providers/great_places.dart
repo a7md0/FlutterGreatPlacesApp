@@ -33,7 +33,7 @@ class GreatPlaces with ChangeNotifier {
 
     notifyListeners();
 
-    DatabaseHelper.insert('user_places', newPlace.toJson());
+    DatabaseHelper.insert('user_places', newPlace.toJson(inline: true));
   }
 
   Future<void> fetchPlaces() async {
