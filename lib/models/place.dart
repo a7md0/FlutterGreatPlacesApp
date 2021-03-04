@@ -37,7 +37,7 @@ class Place {
   Map<String, dynamic> toJson() => {
         'id': id,
         'title': title,
-        // 'location': location != null ? location.toJson() : null,
+        'location': location != null ? location.toJson() : null,
         'image': image.path,
       };
 }
