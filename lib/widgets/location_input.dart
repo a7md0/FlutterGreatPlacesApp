@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:great_places_app/helpers/location_helper.dart';
 import 'package:great_places_app/screens/map_screen.dart';
 import 'package:location/location.dart';
 
 class LocationInput extends StatefulWidget {
+  final Function onSelectPlace;
+
+  LocationInput(this.onSelectPlace);
+
   @override
   _LocationInputState createState() => _LocationInputState();
 }
@@ -59,16 +64,14 @@ class _LocationInputState extends State<LocationInput> {
   Future<void> _setCurrentLocation() async {
     final locData = await Location().getLocation();
 
-    setState(() {
-      _previewImageUrl = LocationHelper.generateLocationPreviewImage(
-        latitude: locData.latitude,
-        longitude: locData.longitude,
-      );
-    });
+    _setSelectedLocation(
+      lat: locData.latitude,
+      lng: locData.longitude,
+    );
   }
 
   Future<void> _selectOnMap() async {
-    final selectedLocation = await Navigator.of(context).push(
+    final selectedLocation = await Navigator.of(context).push<LatLng>(
       MaterialPageRoute(
         fullscreenDialog: true,
         builder: (ctx) => MapScreen(
@@ -80,5 +83,21 @@ class _LocationInputState extends State<LocationInput> {
     if (selectedLocation == null) {
       return;
     }
+
+    _setSelectedLocation(
+      lat: selectedLocation.latitude,
+      lng: selectedLocation.longitude,
+    );
+  }
+
+  void _setSelectedLocation({double lat, double lng}) {
+    setState(() {
+      _previewImageUrl = LocationHelper.generateLocationPreviewImage(
+        latitude: lat,
+        longitude: lng,
+      );
+    });
+
+    widget.onSelectPlace(lat, lng);
   }
 }
