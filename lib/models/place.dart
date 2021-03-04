@@ -18,7 +18,7 @@ class Place {
   Place.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         title = json['title'],
-        location = null,
+        location = PlaceLocation.fromJson(json),
         image = File(json['image']);
 
   Place copyWith({
@@ -52,6 +52,11 @@ class PlaceLocation {
     @required this.longitude,
     this.address,
   });
+
+  PlaceLocation.fromJson(Map<String, dynamic> json)
+      : latitude = json['latitude'],
+        longitude = json['longitude'],
+        address = json['address'];
 
   PlaceLocation copyWith({
     double latitude,
