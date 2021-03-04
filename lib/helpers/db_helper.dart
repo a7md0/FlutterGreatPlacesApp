@@ -12,8 +12,8 @@ class DatabaseHelper {
                               id TEXT PRIMARY KEY,
                               title TEXT,
                               image text,
-                              loc_lat REAL,
-                              loc_lng REAL,
+                              latitude REAL,
+                              longitude REAL,
                               address TEXT
                             );''');
       },
