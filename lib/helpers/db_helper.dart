@@ -11,10 +11,13 @@ class DatabaseHelper {
         return db.execute('''CREATE TABLE user_places (
                               id TEXT PRIMARY KEY,
                               title TEXT,
-                              image text
+                              image text,
+                              loc_lat REAL,
+                              loc_lng REAL,
+                              address TEXT
                             );''');
       },
-      version: 1,
+      version: 2,
     );
   }
 
