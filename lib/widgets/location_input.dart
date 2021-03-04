@@ -62,12 +62,14 @@ class _LocationInputState extends State<LocationInput> {
   }
 
   Future<void> _setCurrentLocation() async {
-    final locData = await Location().getLocation();
+    try {
+      final locData = await Location().getLocation();
 
-    _setSelectedLocation(
-      lat: locData.latitude,
-      lng: locData.longitude,
-    );
+      _setSelectedLocation(
+        lat: locData.latitude,
+        lng: locData.longitude,
+      );
+    } catch (e) {}
   }
 
   Future<void> _selectOnMap() async {
