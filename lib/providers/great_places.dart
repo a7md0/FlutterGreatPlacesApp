@@ -19,7 +19,7 @@ class GreatPlaces with ChangeNotifier {
     final streetName = await LocationHelper.getPlaceAddress(
       placeLocation.latitude,
       placeLocation.longitude,
-    );
+    ).catchError((e) => 'No address');
 
     final newPlace = Place(
       id: DateTime.now().toString(),
